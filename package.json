@@ -1,0 +1,24 @@
+{
+  "name": "playwright-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "tsc --project tsconfig.json && eslint tests/**",
+    "test": "playwright test tests/pom.spec.ts --project=chromium --headed && npx playwright show-report"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@eslint/js": "^9.30.1",
+    "@playwright/test": "^1.53.2",
+    "@types/node": "^24.0.10",
+    "eslint": "^9.30.1",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.36.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.0.1"
+  }
+}
