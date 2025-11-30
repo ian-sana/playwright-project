@@ -56,10 +56,14 @@ export default defineConfig({
     },
 
     {
-      name: 'firefox',
+      name: 'silver-badge',
+      testMatch: 'tests/silver-badge.spec.ts',
       use: {
-        browserName: 'firefox',
-      },
+        browserName: 'chromium',
+        video: 'on-first-retry',
+        screenshot: 'only-on-failure',
+        trace: 'retain-on-failure',
+      }
     },
 
     // add more projects here if needed

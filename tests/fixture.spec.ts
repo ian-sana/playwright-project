@@ -1,4 +1,4 @@
-import { test } from '../resources/fixtures/base';
+import { test } from '@/fixtures/base.fixture';
 import data from '../resources/test-data/tc1.json';
 
 test('validate error messages pom', async ({ navPage, financialServicesPage }) => {

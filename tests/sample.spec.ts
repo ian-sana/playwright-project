@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import data from '../resources/test-data/tc1.json';
+import data from '@/testData/tc1.json';
 
 test('validate error messages', async ({ page }) => {
 

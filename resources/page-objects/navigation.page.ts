@@ -1,6 +1,6 @@
 import { Locator } from '@playwright/test';
-import { BasePage } from './base-page';
-import { FinancialServicesPage } from './financial-services';
+import { BasePage } from '@/page-objects/base.page';
+import { FinancialServicesPage } from '@/page-objects/financial-services.page';
 
 export class NavPage extends BasePage {
 

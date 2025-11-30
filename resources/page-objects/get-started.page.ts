@@ -1,5 +1,5 @@
 import { expect, FrameLocator, Locator } from '@playwright/test';
-import { BasePage } from './base-page';
+import { BasePage } from '@/page-objects/base.page';
 
 export class GetStartedPage extends BasePage {
 

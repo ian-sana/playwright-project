@@ -1,6 +1,6 @@
 import { test as base } from '@playwright/test';
-import { NavPage } from '../page-objects/nav-page';
-import { FinancialServicesPage } from '../page-objects/financial-services';
+import { NavPage } from '../page-objects/navigation.page';
+import { FinancialServicesPage } from '../page-objects/financial-services.page';
 
 type TestFixtures = {
     navPage: NavPage;

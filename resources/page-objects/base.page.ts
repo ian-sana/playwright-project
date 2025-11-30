@@ -20,4 +20,6 @@ export class BasePage {
     //     await this.header.waitFor({ state: 'visible' });
     // }
 
+    // commented out as not used currently
+    // abstract isAt(): Promise<boolean>;
 }
