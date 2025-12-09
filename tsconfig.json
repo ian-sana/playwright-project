@@ -6,10 +6,10 @@
     "baseUrl": "./",
     "paths": {
       "@config": ["playwright.config"],
-      "@/fixtures/*": ["resources/fixtures/*"],
-      "@/page-objects/*": ["resources/page-objects/*"],
-      "@basePage": ["resources/page-objects/base.page"],
-      "@/testData/*": ["resources/test-data/*"],
+      "@/fixtures/*": ["fixtures/*"],
+      "@/page-objects/*": ["page-objects/*"],
+      "@basePage": ["page-objects/base.page"],
+      "@/testData/*": ["test-data/*"],
       "@/utils/*": ["utils/*"]
     },
     "strict": true,
@@ -19,5 +19,5 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true
   },
-  "include": ["resources", "tests", "playwright.config.ts"]
+  "include": ["resources", "tests", "playwright.config.ts", "enums", "fixtures"]
 }

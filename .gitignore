@@ -5,3 +5,15 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+/playwright/.auth/
+
+# Environment files
+.env
+
+# IDE files
+.vscode/
+.idea/
+
+# Screenshots or videos from Playwright
+/screenshots/
+/videos/
