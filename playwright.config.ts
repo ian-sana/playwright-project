@@ -59,6 +59,7 @@ export default defineConfig({
       name: 'silver-badge',
       testMatch: 'tests/silver-badge.spec.ts',
       use: {
+        baseURL: 'https://thinking-tester-contact-list.herokuapp.com/',
         browserName: 'chromium',
         video: 'on-first-retry',
         screenshot: 'only-on-failure',

@@ -1,18 +1,18 @@
 import { test as base } from '@playwright/test';
-import { NavPage } from '../page-objects/navigation.page';
-import { FinancialServicesPage } from '../page-objects/financial-services.page';
+import { UiFixture } from '@/fixtures/ui.fixture';
+import { APIFixture } from '@/fixtures/api.fixture';
 
 type TestFixtures = {
-    navPage: NavPage;
-    financialServicesPage: FinancialServicesPage;
+    ui: UiFixture;
+    api: APIFixture;
 };
 
 export const test = base.extend<TestFixtures>({
-    navPage: async ({ page }, use) => {
-        await use(new NavPage(page));
+    ui: async ({ page }, use) => {
+        await use(new UiFixture(page));
     },
-    financialServicesPage: async ({ page }, use) => {
-        await use(new FinancialServicesPage(page));
+    api: async ({ request, baseURL }, use) => {
+        await use(new APIFixture(request, baseURL));
     },
 });
 

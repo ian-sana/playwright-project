@@ -7,10 +7,15 @@
     "paths": {
       "@config": ["playwright.config"],
       "@/fixtures/*": ["fixtures/*"],
-      "@/page-objects/*": ["page-objects/*"],
       "@basePage": ["page-objects/base.page"],
+      "@/page-objects/*": ["page-objects/*"],
+      "@baseAPI": ["api-objects/clients/base.api"],
+      "@/api-objects/*": ["api-objects/*"],
+      "@/api-objects/clients/*": ["api-objects/clients/*"],
+      "@/api-objects/models/*": ["api-objects/models/*"],
       "@/testData/*": ["test-data/*"],
-      "@/utils/*": ["utils/*"]
+      "@/utils/*": ["utils/*"],
+      "@/enums/*": ["enums/*"],
     },
     "strict": true,
     "module": "commonjs",
@@ -19,5 +24,5 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true
   },
-  "include": ["resources", "tests", "playwright.config.ts", "enums", "fixtures"]
+  "include": ["resources", "tests", "playwright.config.ts", "enums", "fixtures", "page-objects", "api-objects", "test-data", "utils"]
 }

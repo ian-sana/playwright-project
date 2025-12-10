@@ -1,4 +1,4 @@
-import { test } from '@/fixtures/base.fixture';
+import { test } from '@/fixtures/ui.fixture2';
 import data from '@/testData/tc1.json';
 
 test('validate error messages pom', async ({ navPage, financialServicesPage }) => {
