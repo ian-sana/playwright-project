@@ -11,7 +11,6 @@ test('ui flow', async ({ page }) => {
   let capturedRequest: any = null;
   let capturedResponse: any = null;
 
-  // Intercept the route
   await test.step('Intercept the route', async () => {
     await page.route('**/users/login', async (route) => {
       const request = route.request();
@@ -116,3 +115,28 @@ test('API Test', async ({ api, page, credentials }) => {
     await expect(contactListPage.getTableCellByText(contactFullName)).toBeVisible();
   });
 })
+
+test('mock test', async ({ page, credentials }) => { 
+
+  await page.route('**/contacts', async (route) => {
+    const response = await route.fetch();
+    const json = await response.json();
+
+    // Modify the response body
+    json[0].firstName = 'MockedName';
+    json[0].lastName = 'MockedLastName';
+
+    // Fulfill with the modified response
+    await route.fulfill({ response, json });
+    
+  });
+
+  await page.goto('/');
+  const contactLoginPage = new ContactLoginPage(page);
+  await contactLoginPage.login(credentials.email, credentials.password);
+  const contactListPage = new ContactListPage(page);
+  await expect(contactListPage.isAtContactListPage()).toBeVisible();
+  const firstCell = contactListPage.getTableCellByText('MockedName');
+  await expect(firstCell).toBeVisible();
+
+});

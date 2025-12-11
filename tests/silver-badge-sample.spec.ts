@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { ContactLoginPage } from '@/page-objects/herokuapp/contact-login.page';
+import { ContactListPage } from '@/page-objects/herokuapp/contact-list.page';
 import { validateSchema } from '@/utils/schema-validator';
+import { ro } from '@faker-js/faker/.';
 
 
 test('create user via api', async ({ request }) => {
@@ -88,7 +90,8 @@ test('intercepted test', async ({ page }) => {
   await page.goto('https://thinking-tester-contact-list.herokuapp.com/');
   const contactLoginPage = new ContactLoginPage(page);
   await contactLoginPage.login('sample22@example.com', 'sample123');
-  await page.waitForURL(/contactList/, { timeout: 10000 });
+  const contactListPage = new ContactListPage(page);
+  await expect(contactListPage.isAtContactListPage()).toBeVisible();
 
   // Assertions on captured request
   expect(capturedRequest).not.toBeNull();
@@ -105,4 +108,34 @@ test('intercepted test', async ({ page }) => {
   
   console.log('Captured Request:', capturedRequest);
   console.log('Captured Response:', capturedResponse);
+});
+
+test('mock test', async ({ page, request }) => { 
+
+  await page.route('**/contacts', async (route) => {
+    const response = await route.fetch();
+    const json = await response.json();
+    // Modify the response body
+    json[0].firstName = 'MockedName';
+    json[0].lastName = 'MockedLastName';
+
+    // Fulfill with the modified response
+    // mock is visible in ui
+    // await route.fulfill({
+    //   response,
+    //   body: JSON.stringify(body)
+    // });
+
+    await route.fulfill({ response, json });
+    
+  });
+
+  await page.goto('https://thinking-tester-contact-list.herokuapp.com/');
+  const contactLoginPage = new ContactLoginPage(page);
+  await contactLoginPage.login('sample22@example.com', 'sample123');
+  const contactListPage = new ContactListPage(page);
+  await expect(contactListPage.isAtContactListPage()).toBeVisible();
+  const firstCell = contactListPage.getTableCellByText('MockedName');
+  await expect(firstCell).toBeVisible();
+
 });
