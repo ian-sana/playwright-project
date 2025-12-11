@@ -1,6 +1,11 @@
 import { test, expect } from '@/fixtures/single.fixture';
-import { ContactLoginPage } from '@/page-objects/contact-login.page';
+import { ContactLoginPage } from '@/page-objects/herokuapp/contact-login.page';
+import { ContactListPage } from '@/page-objects/herokuapp/contact-list.page';
 import { LoginUserPaylod } from '@/api-objects/models/user.model';
+import { CreateContactPayload } from '@/api-objects/models/contact.model';
+import { validateSchema } from '@/utils/schema-validator';
+import { faker } from '@faker-js/faker';
+
 
 test('ui flow', async ({ page }) => {
   let capturedRequest: any = null;
@@ -54,12 +59,60 @@ test('ui flow', async ({ page }) => {
 });
 
 
-test('API Test', async ({ api }) => {
+test('API Test', async ({ api, page, credentials }) => {
   const userPayload: LoginUserPaylod = {
-    email: "sample22@example.com",
-    password: "sample123"
+    email: credentials.email,
+    password: credentials.password
   };
 
-  const response = api.user.login(userPayload)
-  console.log(response)
+  let token: string;
+  let contactId: string;
+
+  await test.step('Login via API', async () => {
+    const loginResponse = await api.user.login(userPayload);
+    expect(loginResponse.status()).toBe(200);
+    
+    const loginResponseBody = await loginResponse.json();
+    expect(loginResponseBody).toHaveProperty('token');
+    await validateSchema('POST_users_login', loginResponseBody);
+    
+    token = `Bearer ${loginResponseBody.token}`;
+  });
+
+  let firstName: string;
+  let lastName: string;
+
+  await test.step('Create contact via API', async () => {
+    firstName = faker.person.firstName();
+    lastName = faker.person.lastName();
+    
+    const contactPayload: CreateContactPayload = {
+      firstName: firstName,
+      lastName: lastName,
+    };
+
+    const createContactResponse = await api.contact.createContact(
+      contactPayload, 
+      { headers: { Authorization: token } }
+    );
+    expect(createContactResponse.status()).toBe(201);
+    
+    const contactResponseBody = await createContactResponse.json();
+    contactId = contactResponseBody._id;
+  });
+
+  await test.step('Login via UI and verify page header is displayed', async () => {
+    await page.goto('/');
+    
+    const contactLoginPage = new ContactLoginPage(page);
+    await contactLoginPage.login(userPayload.email, userPayload.password);
+    const contactListPage = new ContactListPage(page);
+    await expect(contactListPage.isAtContactListPage()).toBeVisible();
+  });
+
+  await test.step('Verify created contact appears in contact list', async () => {
+    const contactListPage = new ContactListPage(page);
+    const contactFullName = `${firstName} ${lastName}`;
+    await expect(contactListPage.getTableCellByText(contactFullName)).toBeVisible();
+  });
 })

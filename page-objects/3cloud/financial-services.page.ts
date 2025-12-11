@@ -1,6 +1,6 @@
 import { Locator } from '@playwright/test';
 import { BasePage } from '@/page-objects/base.page';
-import { GetStartedPage } from '@/page-objects/get-started.page';
+import { GetStartedPage } from '@/page-objects/3cloud/get-started.page';
 
 export class FinancialServicesPage extends BasePage {
 

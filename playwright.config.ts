@@ -1,6 +1,7 @@
 import { defineConfig } from '@playwright/test';
+import dotenv from 'dotenv';
+dotenv.config();
 
-// import dotenv from 'dotenv';
 // import path from 'path';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
 // require('dotenv').config();
@@ -58,6 +59,8 @@ export default defineConfig({
     {
       name: 'silver-badge',
       testMatch: 'tests/silver-badge.spec.ts',
+      fullyParallel: true,
+      retries: 1,
       use: {
         baseURL: 'https://thinking-tester-contact-list.herokuapp.com/',
         browserName: 'chromium',

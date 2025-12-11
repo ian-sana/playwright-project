@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { ContactLoginPage } from '@/page-objects/contact-login.page';
+import { ContactLoginPage } from '@/page-objects/herokuapp/contact-login.page';
 import { validateSchema } from '@/utils/schema-validator';
 
 

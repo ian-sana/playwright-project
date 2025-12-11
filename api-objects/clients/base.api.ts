@@ -9,7 +9,7 @@ export interface RequestOptions {
 
 export class BaseAPI {
   constructor(private request: APIRequestContext, private baseURL: string = '') {
-    console.log("Base url::   ", baseURL)
+    // console.log("Base url::   ", baseURL)
   }
 
   private buildURL(endpoint: string, params?: Record<string, string | number>): string {
