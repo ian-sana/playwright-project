@@ -51,10 +51,6 @@ test('ui flow', async ({ page }) => {
   expect(capturedResponse).not.toBeNull();
   expect(capturedResponse.status).toBe(200);
   expect(capturedResponse.body).toHaveProperty('token');
-  
-  console.log('Captured Request:', capturedRequest);
-  console.log('Captured Response:', capturedResponse);
-
 });
 
 

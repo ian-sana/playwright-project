@@ -2,8 +2,7 @@ import { test, expect } from '@playwright/test';
 import { ContactLoginPage } from '@/page-objects/herokuapp/contact-login.page';
 import { ContactListPage } from '@/page-objects/herokuapp/contact-list.page';
 import { validateSchema } from '@/utils/schema-validator';
-import { ro } from '@faker-js/faker/.';
-
+import { faker } from '@faker-js/faker/.';
 
 test('create user via api', async ({ request }) => {
   const response = await request.post('https://thinking-tester-contact-list.herokuapp.com/users', {

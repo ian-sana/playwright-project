@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import data from '../test-data/tc1.json';
+import data from '@/testData/tc1.json';
 import { NavPage } from '@/page-objects/3cloud/navigation.page';
 
 test('validate error messages pom', async ({ page }) => {
