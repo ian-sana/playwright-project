@@ -1,15 +1,15 @@
 import { test as base } from '@playwright/test';
-import { NavPage } from '../page-objects/3cloud/home.page';
+import { HomePage } from '../page-objects/3cloud/home.page';
 import { FinancialServicesPage } from '../page-objects/3cloud/financial-services.page';
 
 type TestFixtures = {
-    navPage: NavPage;
+    homePage: HomePage;
     financialServicesPage: FinancialServicesPage;
 };
 
 export const test = base.extend<TestFixtures>({
-    navPage: async ({ page }, use) => {
-        await use(new NavPage(page));
+    homePage: async ({ page }, use) => {
+        await use(new HomePage(page));
     },
     financialServicesPage: async ({ page }, use) => {
         await use(new FinancialServicesPage(page));

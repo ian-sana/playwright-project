@@ -1,4 +1,4 @@
-import { test, expect } from '@/fixtures/single.fixture';
+import { test, expect } from '@/fixtures/base.fixture';
 import { ContactLoginPage } from '@/page-objects/herokuapp/contact-login.page';
 import { ContactListPage } from '@/page-objects/herokuapp/contact-list.page';
 import { LoginUserPaylod } from '@/api-objects/models/user.model';
@@ -6,7 +6,8 @@ import { CreateContactPayload } from '@/api-objects/models/contact.model';
 import { validateSchema } from '@/utils/schema-validator';
 import { faker } from '@faker-js/faker';
 
-test('UI Flow', async ({ page }) => {
+
+test('ui flow', async ({ page, ui }) => {
   let capturedRequest: any = null;
   let capturedResponse: any = null;
 
@@ -35,8 +36,7 @@ test('UI Flow', async ({ page }) => {
 
   await test.step('Login to page', async () => {
     await page.goto('/');
-    const contactLoginPage = new ContactLoginPage(page);
-    await contactLoginPage.login('sample22@example.com', 'sample123');
+    await ui.contactLoginPage.login('sample22@example.com', 'sample123');
     await page.waitForURL(/contactList/, { timeout: 10000 });
   })
   
@@ -50,10 +50,11 @@ test('UI Flow', async ({ page }) => {
   expect(capturedResponse).not.toBeNull();
   expect(capturedResponse.status).toBe(200);
   expect(capturedResponse.body).toHaveProperty('token');
+
 });
 
 
-test('API Test', async ({ api, page, credentials }) => {
+test('API Test', async ({ api, ui, credentials }) => {
   const userPayload: LoginUserPaylod = {
     email: credentials.email,
     password: credentials.password
@@ -96,22 +97,22 @@ test('API Test', async ({ api, page, credentials }) => {
   });
 
   await test.step('Login via UI and verify page header is displayed', async () => {
-    await page.goto('/');
+    await ui.contactLoginPage.goto();
     
-    const contactLoginPage = new ContactLoginPage(page);
+    const contactLoginPage = ui.contactLoginPage;
     await contactLoginPage.login(userPayload.email, userPayload.password);
-    const contactListPage = new ContactListPage(page);
+    const contactListPage = ui.contactListPage;
     await expect(contactListPage.isAtContactListPage()).toBeVisible();
   });
 
   await test.step('Verify created contact appears in contact list', async () => {
-    const contactListPage = new ContactListPage(page);
+    const contactListPage = ui.contactListPage;
     const contactFullName = `${firstName} ${lastName}`;
     await expect(contactListPage.getTableCellByText(contactFullName)).toBeVisible();
   });
 })
 
-test('mock test', async ({ page, credentials }) => { 
+test('mock test', async ({ page, ui, credentials }) => { 
   await page.route('**/contacts', async (route) => {
     const response = await route.fetch();
     const json = await response.json();
@@ -122,14 +123,13 @@ test('mock test', async ({ page, credentials }) => {
 
     // Fulfill with the modified response
     await route.fulfill({ response, json });
+    
   });
 
-  await page.goto('/');
-  const contactLoginPage = new ContactLoginPage(page);
-  await contactLoginPage.login(credentials.email, credentials.password);
-  const contactListPage = new ContactListPage(page);
-  await expect(contactListPage.isAtContactListPage()).toBeVisible();
-  const firstCell = contactListPage.getTableCellByText('MockedName');
+  await ui.contactLoginPage.goto();
+  await ui.contactLoginPage.login(credentials.email, credentials.password);
+  await expect(ui.contactListPage.isAtContactListPage()).toBeVisible();
+  const firstCell = ui.contactListPage.getTableCellByText('MockedName');
   await expect(firstCell).toBeVisible();
 
 });

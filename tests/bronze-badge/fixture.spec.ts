@@ -20,14 +20,8 @@ test('validate error messages pom', async ({ navPage, financialServicesPage }) =
   });
 
   await test.step('Fill the required fields', async () => {
-    await getStartedPage.fillForm(
-      data.firstname,
-      data.lastname,
-      data.company,
-      data.email,
-      data.jobTitle,
-      data.phoneNumber,
-      data.comments
+    await getStartedPage.fillForm(data.firstname, data.lastname, data.company,
+      data.email, data.jobTitle, data.phoneNumber, data.comments
     );
   });
 

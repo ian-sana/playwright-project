@@ -58,7 +58,7 @@ export default defineConfig({
 
     {
       name: 'silver-badge',
-      testMatch: 'tests/silver-badge.spec.ts',
+      testMatch: 'tests/silver-badge/silver-badge.spec.ts',
       fullyParallel: true,
       retries: 1,
       use: {

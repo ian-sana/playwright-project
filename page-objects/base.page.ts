@@ -11,8 +11,8 @@ export class BasePage {
         this.header = this.root.locator('h1');
     }
 
-    async goto(url: string) {
-        await this.page.goto(url, { waitUntil: 'domcontentloaded' });
+    async goto() {
+        await this.page.goto('/', { waitUntil: 'domcontentloaded' });
         await this.header.waitFor({ state: 'visible' });
     }
 
