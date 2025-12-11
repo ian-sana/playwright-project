@@ -16,6 +16,7 @@
       "@/testData/*": ["test-data/*"],
       "@/utils/*": ["utils/*"],
       "@/enums/*": ["enums/*"],
+      "@/componnts/*": ["componnts/*"]
     },
     "strict": true,
     "module": "commonjs",
@@ -24,5 +25,5 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true
   },
-  "include": ["resources", "tests", "playwright.config.ts", "enums", "fixtures", "page-objects", "api-objects", "test-data", "utils"]
+  "include": ["resources", "tests", "playwright.config.ts", "enums", "fixtures", "page-objects", "api-objects", "test-data", "utils", "componnts"]
 }

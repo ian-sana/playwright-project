@@ -1,5 +1,5 @@
 import { test as base } from '@playwright/test';
-import { NavPage } from '../page-objects/3cloud/navigation.page';
+import { NavPage } from '../page-objects/3cloud/home.page';
 import { FinancialServicesPage } from '../page-objects/3cloud/financial-services.page';
 
 type TestFixtures = {

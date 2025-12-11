@@ -1,5 +1,6 @@
 import { expect, FrameLocator, Locator } from '@playwright/test';
 import { BasePage } from '@/page-objects/base.page';
+import { SiteNavigation } from '@/componnts/header/site-navigation';
 
 export class GetStartedPage extends BasePage {
 
@@ -13,29 +14,39 @@ export class GetStartedPage extends BasePage {
     private phoneNumberInput: Locator = this.formFrame.getByRole('textbox', { name: 'Phone number' });
     private commentsInput: Locator = this.formFrame.getByRole('textbox', { name: 'Comments' });
     private submitButton: Locator = this.formFrame.getByRole('button', { name: 'SUBMIT' });
+    private siteNav: SiteNavigation;
 
     jobTitleError: Locator = this.formFrame.locator('//div[contains(@class,"jobtitle")]//ul//label');
     phoneNumberError: Locator = this.formFrame.locator('//div[contains(@class,"phone")]//ul//label');
     commentsError: Locator = this.formFrame.locator('//div[contains(@class,"message")]//ul//label');
     errorMsg: Locator = this.formFrame.locator('//label[text()="Please complete all required fields."]');
 
+    constructor(page: any) {
+      super(page);
+      this.siteNav = new SiteNavigation(this.page);
+    }
+
+    getNavigation(): SiteNavigation {
+        return this.siteNav;
+    }
+
     async fillForm(firstName: string, lastName: string, companyName: string, email: string, jobTitle: string, phoneNumber: string, comments: string): Promise<void> {
         // Using Promise.all to fill all fields concurrently
-        await Promise.all([this.firstNameInput.fill(firstName),
-        this.lastNameInput.fill(lastName),
-        this.companyNameInput.fill(companyName),
-        this.emailInput.fill(email),
-        this.jobTitleInput.fill(jobTitle),
-        this.phoneNumberInput.fill(phoneNumber),
-        this.commentsInput.fill(comments)]);
+        // await Promise.all([this.firstNameInput.fill(firstName),
+        // this.lastNameInput.fill(lastName),
+        // this.companyNameInput.fill(companyName),
+        // this.emailInput.fill(email),
+        // this.jobTitleInput.fill(jobTitle),
+        // this.phoneNumberInput.fill(phoneNumber),
+        // this.commentsInput.fill(comments)]);
 
-        // await this.firstNameInput.fill(firstName);
-        // await this.lastNameInput.fill(lastName);
-        // await this.companyNameInput.fill(companyName);
-        // await this.emailInput.fill(email);
-        // await this.jobTitleInput.fill(jobTitle);
-        // await this.phoneNumberInput.fill(phoneNumber);
-        // await this.commentsInput.fill(comments);
+        await this.firstNameInput.fill(firstName);
+        await this.lastNameInput.fill(lastName);
+        await this.companyNameInput.fill(companyName);
+        await this.emailInput.fill(email);
+        await this.jobTitleInput.fill(jobTitle);
+        await this.phoneNumberInput.fill(phoneNumber);
+        await this.commentsInput.fill(comments);
     }
 
     async submitForm() {

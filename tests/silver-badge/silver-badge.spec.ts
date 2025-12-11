@@ -34,7 +34,7 @@ test('UI Flow', async ({ page }) => {
   });
 
   await test.step('Login to page', async () => {
-    await page.goto('https://thinking-tester-contact-list.herokuapp.com/');
+    await page.goto('/');
     const contactLoginPage = new ContactLoginPage(page);
     await contactLoginPage.login('sample22@example.com', 'sample123');
     await page.waitForURL(/contactList/, { timeout: 10000 });

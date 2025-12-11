@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { BasePage } from '@/page-objects/base.page';
 import { FinancialServicesPage } from '@/page-objects/3cloud/financial-services.page';
 import { GetStartedPage } from '@/page-objects/3cloud/get-started.page';
-import { NavPage } from '@/page-objects/3cloud/navigation.page';
+import { NavPage } from '@/page-objects/3cloud/home.page';
 
 export class UiFixture {
     private base: BasePage;
