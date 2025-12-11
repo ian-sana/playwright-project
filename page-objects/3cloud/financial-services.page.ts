@@ -29,12 +29,12 @@ export class FinancialServicesPage extends BasePage {
 
         // Alternative approach using context.waitForEvent
         // This is more reliable in some cases, especially if the popup is opened in a new tab.
-        const [popup] = await Promise.all([
-            this.page.waitForEvent('popup'),
+        const [newPage] = await Promise.all([
+            this.page.context().waitForEvent('page'),
             this.letsTalkLink.click()
         ]);
-        await popup.waitForLoadState();
-        return new GetStartedPage(popup);
+        await newPage.waitForLoadState();
+        return new GetStartedPage(newPage);
     }
 
     async getSupportSection() {

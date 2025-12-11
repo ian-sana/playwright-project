@@ -1,18 +1,18 @@
 import { test } from '@/fixtures/ui.fixture2';
 import data from '@/testData/tc1.json';
 
-test('validate error messages pom', async ({ navPage, financialServicesPage }) => {
+test('validate error messages pom', async ({ homePage, financialServicesPage }) => {
 
   await test.step('Navigate to the 3Cloud Solutions homepage', async () => {
-    await navPage.goto('/');
+    await homePage.goto();
   });
 
   await test.step('Hover over the "Who We Serve" menu item in the navigation bar', async () => {
-    await navPage.hoverWhoWeServe();
+    await homePage.getNavigation().hoverWhoWeServe();
   });
 
   await test.step('Click on the “Financial Services” link from the dropdown', async () => {
-    await navPage.clickFinancialServices();
+    await homePage.getNavigation().clickFinancialServices();
   });
 
   const getStartedPage = await test.step('Click the “Let’s Talk” button on the Financial Services page', async () => {
