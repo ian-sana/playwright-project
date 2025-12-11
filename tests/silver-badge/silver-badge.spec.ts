@@ -6,8 +6,7 @@ import { CreateContactPayload } from '@/api-objects/models/contact.model';
 import { validateSchema } from '@/utils/schema-validator';
 import { faker } from '@faker-js/faker';
 
-
-test('ui flow', async ({ page }) => {
+test('UI Flow', async ({ page }) => {
   let capturedRequest: any = null;
   let capturedResponse: any = null;
 
@@ -113,7 +112,6 @@ test('API Test', async ({ api, page, credentials }) => {
 })
 
 test('mock test', async ({ page, credentials }) => { 
-
   await page.route('**/contacts', async (route) => {
     const response = await route.fetch();
     const json = await response.json();
@@ -124,7 +122,6 @@ test('mock test', async ({ page, credentials }) => {
 
     // Fulfill with the modified response
     await route.fulfill({ response, json });
-    
   });
 
   await page.goto('/');
