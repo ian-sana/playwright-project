@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "pretest": "tsc --project tsconfig.json && eslint tests/**",
-    "test": "playwright test tests/bronze-badge/pom.spec.ts --project=chromium && npx playwright show-report"
+    "test": "playwright test tests/bronze-badge/pom.spec.ts --project=chromium"
   },
   "keywords": [],
   "author": "",
