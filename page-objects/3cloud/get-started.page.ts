@@ -1,6 +1,6 @@
 import { expect, FrameLocator, Locator } from '@playwright/test';
 import { BasePage } from '@/page-objects/base.page';
-import { SiteNavigation } from '@/componnts/header/site-navigation';
+import { SiteNavigation } from '@/components/header/site-navigation';
 
 export class GetStartedPage extends BasePage {
 

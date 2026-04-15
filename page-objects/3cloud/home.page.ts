@@ -1,6 +1,6 @@
 import { Locator } from '@playwright/test';
 import { BasePage } from '@/page-objects/base.page';
-import { SiteNavigation } from '@/componnts/header/site-navigation';
+import { SiteNavigation } from '@/components/header/site-navigation';
 import { FinancialServicesPage } from '@/page-objects/3cloud/financial-services.page';
 
 export class HomePage extends BasePage {

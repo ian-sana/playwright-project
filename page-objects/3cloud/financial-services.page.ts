@@ -1,7 +1,7 @@
 import { Locator } from '@playwright/test';
 import { BasePage } from '@/page-objects/base.page';
 import { GetStartedPage } from '@/page-objects/3cloud/get-started.page';
-import { SiteNavigation } from '@/componnts/header/site-navigation';
+import { SiteNavigation } from '@/components/header/site-navigation';
 
 export class FinancialServicesPage extends BasePage {
 

@@ -23,5 +23,5 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true
   },
-  "include": ["resources", "tests", "playwright.config.ts", "enums", "fixtures", "page-objects", "api-objects", "test-data", "utils", "componnts"]
+  "include": ["resources", "tests", "playwright.config.ts", "enums", "fixtures", "page-objects", "api-objects", "test-data", "utils", "components"]
 }
