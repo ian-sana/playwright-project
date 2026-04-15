@@ -1,6 +1,6 @@
 import { defineConfig } from '@playwright/test';
 import dotenv from 'dotenv';
-dotenv.config();
+dotenv.config({ quiet: true });
 
 // import path from 'path';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });

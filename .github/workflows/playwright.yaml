@@ -9,8 +9,11 @@ jobs:
     name: 'Playwright Tests Sample'
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.58.2-noble
+      image: mcr.microsoft.com/playwright:v1.59.1-noble
       options: --user 1001
+    env:
+      HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
+      HEROKU_PASSWORD: ${{ secrets.HEROKU_PASSWORD }}
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v6

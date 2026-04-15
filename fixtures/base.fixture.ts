@@ -21,9 +21,16 @@ export const test = base.extend<TestFixtures>({
         await use(new APIFixture(request, baseURL));
     },
     credentials: async ({}, use) => {
+      const email = process.env.HEROKU_EMAIL;
+      const password = process.env.HEROKU_PASSWORD;
+
+      if (!email || !password) {
+        throw new Error('Missing HEROKU_EMAIL or HEROKU_PASSWORD. Set them in .env for local runs or GitHub Actions secrets for CI.');
+      }
+
       const creds = {
-        email: process.env.HEROKU_EMAIL || '',
-        password: process.env.HEROKU_PASSWORD || '',
+        email,
+        password,
       };
       await use(creds);
     }
