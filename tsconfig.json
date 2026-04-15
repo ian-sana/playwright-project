@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     
+    "ignoreDeprecations": "6.0",
     "target": "es2016",
     "types": ["node"],
     "baseUrl": "./",
