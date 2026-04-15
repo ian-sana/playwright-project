@@ -1,23 +1,20 @@
 {
   "compilerOptions": {
-    
-    "ignoreDeprecations": "6.0",
     "target": "es2016",
     "types": ["node"],
-    "baseUrl": "./",
     "paths": {
-      "@config": ["playwright.config"],
-      "@/fixtures/*": ["fixtures/*"],
-      "@basePage": ["page-objects/base.page"],
-      "@/page-objects/*": ["page-objects/*"],
-      "@baseAPI": ["api-objects/clients/base.api"],
-      "@/api-objects/*": ["api-objects/*"],
-      "@/api-objects/clients/*": ["api-objects/clients/*"],
-      "@/api-objects/models/*": ["api-objects/models/*"],
-      "@/testData/*": ["test-data/*"],
-      "@/utils/*": ["utils/*"],
-      "@/enums/*": ["enums/*"],
-      "@/componnts/*": ["componnts/*"]
+      "@config": ["./playwright.config"],
+      "@/fixtures/*": ["./fixtures/*"],
+      "@basePage": ["./page-objects/base.page"],
+      "@/page-objects/*": ["./page-objects/*"],
+      "@baseAPI": ["./api-objects/clients/base.api"],
+      "@/api-objects/*": ["./api-objects/*"],
+      "@/api-objects/clients/*": ["./api-objects/clients/*"],
+      "@/api-objects/models/*": ["./api-objects/models/*"],
+      "@/testData/*": ["./test-data/*"],
+      "@/utils/*": ["./utils/*"],
+      "@/enums/*": ["./enums/*"],
+      "@/components/*": ["./components/*"]
     },
     "strict": true,
     "module": "commonjs",
