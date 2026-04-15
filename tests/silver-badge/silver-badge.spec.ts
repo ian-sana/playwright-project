@@ -8,8 +8,7 @@ import testData from '@/testData/silver-badge.json';
 
 test('ui flow', async ({ page, ui, credentials }) => {
   // Arrange
-  let interception: any;
-  interception = captureNetworkCall(page, ENDPOINTS.LOGIN);
+  const interception = captureNetworkCall(page, ENDPOINTS.LOGIN);
 
   // Act
   await page.goto('/');
@@ -74,8 +73,8 @@ test('API Test', async ({ api, ui, credentials }) => {
       Authorization: token } });
 
   expect(createContactResponse.status()).toBe(201);
-  const contactResponseBody = await createContactResponse.json();
-  const contactId = contactResponseBody._id;
+  // const contactResponseBody = await createContactResponse.json();
+  // const _contactId = contactResponseBody._id;
 
   await ui.contactLoginPage.goto();
   const contactLoginPage = ui.contactLoginPage;

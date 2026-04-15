@@ -8,7 +8,7 @@ export default tseslint.config(
         languageOptions: {
             parserOptions: {
                 projectService: true, // Enable project service for TypeScript
-                tsconfigRootDir: ".", // Set the root directory for tsconfig
+                tsconfigRootDir: import.meta.dirname, // Set the root directory for tsconfig
             },
         },
     },

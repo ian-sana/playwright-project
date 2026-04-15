@@ -60,8 +60,8 @@ test('login user and add contact via api', async ({ request }) => {
 
 test('intercepted test', async ({ page }) => {
 
-  let capturedRequest: any = null;
-  let capturedResponse: any = null;
+  let capturedRequest: Record<string, unknown> | null = null;
+  let capturedResponse: Record<string, unknown> | null = null;
 
   // Intercept the route
   await page.route('**/users/login', async (route) => {
@@ -93,22 +93,22 @@ test('intercepted test', async ({ page }) => {
 
   // Assertions on captured request
   expect(capturedRequest).not.toBeNull();
-  expect(capturedRequest.method).toBe('POST');
-  expect(capturedRequest.payload).toEqual({
+  expect(capturedRequest!.method).toBe('POST');
+  expect(capturedRequest!.payload).toEqual({
     email: 'sample22@example.com',
     password: 'sample123'
   });
 
   // Assertions on captured response
   expect(capturedResponse).not.toBeNull();
-  expect(capturedResponse.status).toBe(200);
-  expect(capturedResponse.body).toHaveProperty('token');
+  expect(capturedResponse!.status).toBe(200);
+  expect(capturedResponse!.body).toHaveProperty('token');
   
   console.log('Captured Request:', capturedRequest);
   console.log('Captured Response:', capturedResponse);
 });
 
-test('mock test', async ({ page, request }) => { 
+test('mock test', async ({ page }) => { 
 
   await page.route('**/contacts', async (route) => {
     const response = await route.fetch();

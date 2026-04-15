@@ -8,7 +8,6 @@ import { ContactLoginPage } from '@/page-objects/herokuapp/contact-login.page';
 import { ContactListPage } from '@/page-objects/herokuapp/contact-list.page';
 import { AddContactPage } from '@/page-objects/herokuapp/add-contact.page';
 import { AddUserPage } from '@/page-objects/herokuapp/add-user.page';
-import { th } from "@faker-js/faker/.";
 
 export class UiFixture {
     private base: BasePage;

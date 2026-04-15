@@ -2,7 +2,6 @@ import { test, expect } from '@playwright/test';
 import data from '@/testData/tc1.json';
 import { HomePage } from '@/page-objects/3cloud/home.page';
 import { FinancialServicesPage } from '@/page-objects/3cloud/financial-services.page';
-import { GetStartedPage } from '@/page-objects/3cloud/get-started.page';
 
 test.describe('3Cloud Solutions Test Suite', () => {
   let homePage: HomePage;
@@ -15,7 +14,7 @@ test.describe('3Cloud Solutions Test Suite', () => {
     // getStartedPage = new GetStartedPage(page);
   });
 
-  test('validate error messages', async ({ }) => {
+  test('validate error messages', async () => {
     await homePage.goto();
     await homePage.getNavigation().hoverWhoWeServe();
     await homePage.getNavigation().clickFinancialServices();
